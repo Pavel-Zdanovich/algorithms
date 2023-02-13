@@ -8,7 +8,7 @@ import java.util.IntSummaryStatistics;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class UtilsTest {
+class UtilsTest {
 
     @Test
     void test1() {
@@ -91,7 +91,7 @@ public class UtilsTest {
         Assertions.assertThrows(
                 RuntimeException.class,
                 () -> Utils.generate(Integer.class, 10, 1, 10, 1),
-                "Range of values [%f, %f) doesn't allow to generate an array of size %d".formatted(1.0, 10.0, 10)
+                "Range of values [%f, %f) doesn't allow to generate an array of unique values of size: %d(size) * %f(uniqueness) = %d".formatted(1.0, 10.0, 10, 1.0, 10)
         );
     }
 

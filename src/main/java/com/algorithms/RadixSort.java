@@ -1,5 +1,8 @@
 package com.algorithms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RadixSort {
 
     public static final int RADIX = 10; //base of the number system
@@ -8,6 +11,7 @@ public class RadixSort {
         if (array == null) {
             throw new RuntimeException("Array is null");
         }
+        validate(array);
         switch (array.length) {
             case 0 -> throw new RuntimeException("Array is empty");
             case 1 -> {
@@ -34,7 +38,19 @@ public class RadixSort {
 
         return array;
     }
-    
+
+    private static void validate(Integer[] array) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 0) {
+                map.put(i, array[i]);
+            }
+        }
+        if (!map.isEmpty()) {
+            throw new RuntimeException("Invalid elements: %s".formatted(map));
+        }
+    }
+
     private static Integer[] sortByNumberDigit(Integer[] array, int exp) {
         int[] occurrences = new int[RADIX];
         for (int value : array) {

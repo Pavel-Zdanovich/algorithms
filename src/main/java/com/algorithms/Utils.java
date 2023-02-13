@@ -11,30 +11,31 @@ public class Utils {
         if (tClass == null) {
             throw new RuntimeException("Class is null");
         }
+
         if (size < 1 || size > MAX_ARRAY_SIZE) {
             throw new RuntimeException("Size is invalid: %d".formatted(size));
         }
+
         if (min.doubleValue() > max.doubleValue()) {
             throw new RuntimeException("Min and max are invalid: %f > %f".formatted(min.doubleValue(), max.doubleValue()));
         }
+        int diff = (int) Math.abs(max.doubleValue() - min.doubleValue());
+
         if (uniqueness <= 0 || uniqueness > 1) {
             throw new RuntimeException("Uniqueness is invalid: %f".formatted(uniqueness));
         }
-        if (uniqueness == 1) {
-            int diff = (int) Math.abs(max.doubleValue() - min.doubleValue());
-            if (diff == size) {
-                T[] result = iterate(tClass, size, min, max);
-                shuffle(result);
-                return result;
-            }
-            if (diff < size) {
-                throw new RuntimeException("Range of values [%f, %f) doesn't allow to generate an array of size %d"
-                        .formatted(min.doubleValue(), max.doubleValue(), size));
-            }
-        }
-
         float uniquePart = 1 / uniqueness;
         int sizeOfUnique = (int) (size / uniquePart);
+
+//        if (diff == sizeOfUnique) {
+//            T[] result = iterate(tClass, sizeOfUnique, min, max);
+//            shuffle(result);
+//            return result;
+//        }
+        if (diff < sizeOfUnique) {
+            throw new RuntimeException("Range of values [%f, %f) doesn't allow to generate an array of unique values of size: %d(size) * %f(uniqueness) = %d"
+                    .formatted(min.doubleValue(), max.doubleValue(), size, uniqueness, sizeOfUnique));
+        }
 
         Map<T, Integer> map = generate(tClass, sizeOfUnique, min, max);
 

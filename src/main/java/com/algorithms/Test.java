@@ -37,29 +37,19 @@ public class Test {
         }
     }
 
-//    @Benchmark
-    public Object beadSort(Array array) {
-        return BeadSort.sort(array.get());
-    }
-
     @Benchmark
     public Object bubbleSort(Array array) {
         return BubbleSort.sort(array.get());
     }
 
-//    @Benchmark
+    @Benchmark
     public Object bucketSort(Array array) {
         return BucketSort.sort(array.get());
     }
 
-//    @Benchmark
+    @Benchmark
     public Object countingSort(Array array) {
         return CountingSort.sort(array.get());
-    }
-
-    @Benchmark
-    public Object graphSort(Array array) {
-        return GraphSort.sort(array.get());
     }
 
     @Benchmark
@@ -83,12 +73,12 @@ public class Test {
     }
 
     @Benchmark
-    public Object radixSort(Array array) {
-        return RadixSort.sort(array.get());
+    public Object selectionSort(Array array) {
+        return SelectionSort.sort(array.get());
     }
 
     @Benchmark
-    public Object selectionSort(Array array) {
-        return SelectionSort.sort(array.get());
+    public Object shellSort(Array array) {
+        return ShellSort.sort(array.get());
     }
 }

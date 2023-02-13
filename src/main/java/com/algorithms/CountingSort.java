@@ -1,12 +1,5 @@
 package com.algorithms;
 
-/**
- * https://en.wikipedia.org/wiki/Counting_sort
- * Useful for sorting duplicate elements that belong to a range of values (integers, because keys as index in array)
- * less than the number of elements, i.e. the difference between the maximum
- * and minimum elements is less than or equal to the number of elements.
- * It is not a comparison sort.
- */
 public class CountingSort {
 
     public static Integer[] sort(Integer[] array) {
